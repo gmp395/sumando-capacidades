@@ -47,6 +47,13 @@ La propuesta se articula alrededor de tres conceptos principales:
 - **Autonomía**
 - **Comunidad**
 
+## Enlaces
+
+- **Repositorio:** [GitHub](https://github.com/gmp395/pe-gestion-ong-tfg)
+- **Demo:** [GitHub Pages](https://gmp395.github.io/pe-gestion-ong-tfg/)
+
+> La demo publicada en GitHub Pages permite visualizar la interfaz de la aplicación. Las funcionalidades que requieren conexión con el backend deben ejecutarse en entorno local.
+
 ---
 
 ## Objetivos
