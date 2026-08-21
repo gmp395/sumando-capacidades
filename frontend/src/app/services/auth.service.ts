@@ -40,8 +40,8 @@ export class AuthService {
 
   private initAuth(): void {
 
-    const token = localStorage.getItem('token');
-    const savedUser = localStorage.getItem('user');
+    const token = localStorage.getItem('sumando_capacidades_token');
+    const savedUser = localStorage.getItem('sumando_capacidades_user');
 
     if (!token || !savedUser) {
       this.clearSession();
@@ -149,8 +149,8 @@ export class AuthService {
 
   private clearSession(): void {
 
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('sumando_capacidades_token');
+    localStorage.removeItem('sumando_capacidades_user');
 
     this.userSubject.next(null);
   }
@@ -158,7 +158,7 @@ export class AuthService {
 
   getToken(): string | null {
 
-    return localStorage.getItem('token');
+    return localStorage.getItem('sumando_capacidades_token');
   }
 
 
