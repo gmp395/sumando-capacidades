@@ -1,0 +1,357 @@
+<div class="mensajes-page">
+
+    <div class="content-wrapper">
+
+        <!-- CABECERA -->
+        <header class="page-header">
+
+            <div class="header-content">
+
+                <h1>Bandeja de entrada</h1>
+
+                <p>
+                    Gestiona las consultas y mensajes recibidos
+                    a través del formulario de contacto.
+                </p>
+
+            </div>
+
+            <div
+                class="header-stats"
+                *ngIf="!loading"
+            >
+
+                <div class="stat-card">
+
+                    <span class="stat-value total-val">
+                        {{ messages.length }}
+                    </span>
+
+                    <span class="stat-label">
+                        TOTAL
+                    </span>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span class="stat-value nuevos-val">
+                        {{ getUnreadCount() }}
+                    </span>
+
+                    <span class="stat-label">
+                        NUEVOS
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CARGANDO -->
+        <div
+            *ngIf="loading"
+            class="loading-state"
+        >
+
+            <div class="spinner"></div>
+
+            <span>
+                Cargando consultas...
+            </span>
+
+        </div>
+
+
+        <!-- ERROR DE CARGA -->
+        <div
+            *ngIf="!loading && errorMessage"
+            class="error-state"
+        >
+
+            <p>
+                {{ errorMessage }}
+            </p>
+
+            <button
+                type="button"
+                class="btn-retry"
+                (click)="cargarMensajes()"
+            >
+                Intentar de nuevo
+            </button>
+
+        </div>
+
+
+        <!-- BANDEJA -->
+        <div
+            class="messages-layout"
+            *ngIf="
+                !loading &&
+                !errorMessage &&
+                messages.length > 0
+            "
+        >
+
+            <!-- LISTA DE MENSAJES -->
+            <aside class="messages-list">
+
+                <div class="list-header">
+                    RECIENTES
+                </div>
+
+                <div class="scroll-area">
+
+                    <div
+                        class="message-card"
+                        *ngFor="let msg of messages"
+                        [class.active]="selectedMessage?.id === msg.id"
+                        (click)="viewMessage(msg)"
+                    >
+
+                        <div class="card-avatar">
+                            {{ msg.nombre.charAt(0) }}
+                        </div>
+
+                        <div class="card-content">
+
+                            <div class="msg-header">
+
+                                <span class="msg-author">
+                                    {{ msg.nombre }}
+                                </span>
+
+                                <span class="msg-date">
+                                    {{ msg.fechaEnvio | date:'dd/MM' }}
+                                </span>
+
+                            </div>
+
+                            <div class="category-badge">
+                                {{ msg.asunto }}
+                            </div>
+
+                            <div class="msg-preview">
+                                {{ msg.mensaje }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- DETALLE DEL MENSAJE -->
+            <main
+                class="message-detail"
+                *ngIf="selectedMessage"
+            >
+
+                <header class="detail-header">
+
+                    <div class="author-meta">
+
+                        <div class="detail-avatar">
+                            {{ selectedMessage.nombre.charAt(0) }}
+                        </div>
+
+                        <div class="author-info">
+
+                            <h2>
+                                {{ selectedMessage.nombre }}
+                            </h2>
+
+                            <p>
+                                {{ selectedMessage.email }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="msg-timestamp-full">
+
+                        {{ selectedMessage.fechaEnvio | date:'dd/MM/yyyy' }}
+
+                        <br>
+
+                        {{ selectedMessage.fechaEnvio | date:'HH:mm' }}
+
+                    </div>
+
+                </header>
+
+
+                <div class="detail-body">
+
+                    <!-- ASUNTO -->
+                    <div class="category-box-wrapper">
+
+                        <label>
+                            Asunto del mensaje
+                        </label>
+
+                        <span class="badge">
+                            {{ selectedMessage.asunto }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- MENSAJE ORIGINAL -->
+                    <div class="original-message-text">
+
+                        {{ selectedMessage.mensaje }}
+
+                    </div>
+
+
+                    <!-- RESPUESTA YA ENVIADA -->
+                    <div
+                        class="admin-bubble-container"
+                        *ngIf="selectedMessage.respuesta"
+                    >
+
+                        <div class="bubble-header-row">
+
+                            <div class="label-group">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="3"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path
+                                        d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                                    ></path>
+                                </svg>
+
+                                <span>
+                                    Respuesta de administración
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="time"
+                                *ngIf="selectedMessage.fechaRespuesta"
+                            >
+                                {{ selectedMessage.fechaRespuesta | date:'dd/MM/yyyy HH:mm' }}
+                            </span>
+
+                        </div>
+
+                        <div class="bubble-content-text">
+
+                            {{ selectedMessage.respuesta }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESPUESTA -->
+                <footer class="detail-footer-reply">
+
+                    <div class="reply-input-wrapper">
+
+                        <textarea
+                            [(ngModel)]="replyText"
+                            placeholder="Escribe una respuesta para esta persona..."
+                        ></textarea>
+
+
+                        <p
+                            *ngIf="replyError"
+                            class="reply-error"
+                        >
+                            {{ replyError }}
+                        </p>
+
+
+                        <button
+                            type="button"
+                            class="btn-submit-reply"
+                            (click)="sendReply()"
+                            [disabled]="
+                                !replyText.trim() ||
+                                enviandoRespuesta
+                            "
+                        >
+                            {{
+                                enviandoRespuesta
+                                    ? 'Enviando...'
+                                    : 'Enviar respuesta'
+                            }}
+                        </button>
+
+                    </div>
+
+                </footer>
+
+            </main>
+
+
+            <!-- SIN MENSAJE SELECCIONADO -->
+            <div
+                class="detail-placeholder"
+                *ngIf="!selectedMessage"
+            >
+
+                <div class="placeholder-illustration">
+                    ✉️
+                </div>
+
+                <h2>
+                    Bandeja de entrada
+                </h2>
+
+                <p>
+                    Selecciona una consulta de la lista
+                    para ver los detalles y responder
+                    a la persona usuaria.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIN MENSAJES -->
+        <div
+            class="error-state"
+            *ngIf="
+                !loading &&
+                !errorMessage &&
+                messages.length === 0
+            "
+        >
+
+            <h2>
+                No hay mensajes pendientes
+            </h2>
+
+            <p>
+                Las consultas enviadas desde el formulario
+                de contacto aparecerán aquí.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,855 @@
+<main class="voluntariado-page">
+
+    <!-- HERO -->
+    <section class="voluntariado-hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <span class="hero-eyebrow">VOLUNTARIADO</span>
+
+            <h1>
+                Encuentra una forma de
+                <span class="highlight">sumar capacidades</span>
+            </h1>
+
+            <p>
+                Participa en actividades de acompañamiento, inclusión,
+                autonomía y apoyo a personas con discapacidad y sus familias.
+            </p>
+        </div>
+    </section>
+
+
+    <div class="voluntariado-layout">
+
+        <!-- FILTROS -->
+        <aside class="voluntariado-sidebar">
+
+            <div class="filter-group">
+
+                <h3>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+
+                    Filtros
+                </h3>
+
+
+                <!-- CATEGORÍA -->
+                <div class="filter-section">
+
+                    <label>TIPO DE ACTIVIDAD</label>
+
+                    <div class="radio-group">
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="cat"
+                                (change)="setCategoria('Todas')"
+                                checked
+                            >
+                            Todas
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="cat"
+                                (change)="setCategoria('educativa')"
+                            >
+                            Apoyo educativo
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="cat"
+                                (change)="setCategoria('salud')"
+                            >
+                            Autonomía y bienestar
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="cat"
+                                (change)="setCategoria('ambiental')"
+                            >
+                            Ocio inclusivo
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="cat"
+                                (change)="setCategoria('social')"
+                            >
+                            Acompañamiento e inclusión
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <!-- FECHA -->
+                <div class="filter-section">
+
+                    <label>FECHA</label>
+
+                    <div class="radio-group">
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="fecha"
+                                (change)="setFecha('Todas')"
+                                [checked]="filtros.fecha === 'Todas'"
+                            >
+                            Todas
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="fecha"
+                                (change)="setFecha('7dias')"
+                                [checked]="filtros.fecha === '7dias'"
+                            >
+                            Próximos 7 días
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="fecha"
+                                (change)="setFecha('mes')"
+                                [checked]="filtros.fecha === 'mes'"
+                            >
+                            Este mes
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <!-- DEDICACIÓN -->
+                <div class="filter-section">
+
+                    <label>DEDICACIÓN</label>
+
+                    <div class="difficulty-buttons">
+
+                        <button
+                            [class.active]="filtros.dificultad === 'Todas'"
+                            (click)="setDificultad('Todas')"
+                        >
+                            Todas
+                        </button>
+
+                        <button
+                            [class.active]="filtros.dificultad === 'Baja'"
+                            (click)="setDificultad('Baja')"
+                        >
+                            Baja
+                        </button>
+
+                        <button
+                            [class.active]="filtros.dificultad === 'Media'"
+                            (click)="setDificultad('Media')"
+                        >
+                            Media
+                        </button>
+
+                        <button
+                            [class.active]="filtros.dificultad === 'Alta'"
+                            (click)="setDificultad('Alta')"
+                        >
+                            Alta
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PROPUESTA -->
+            <div class="suggest-card">
+
+                <div class="suggest-icon">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                        <path d="M2 2l7.586 7.586"></path>
+                        <circle cx="11" cy="11" r="2"></circle>
+                    </svg>
+                </div>
+
+                <h4>¿Tienes una propuesta?</h4>
+
+                <p>
+                    Si conoces una actividad que pueda favorecer la inclusión
+                    y la participación, puedes compartirla con el equipo.
+                </p>
+
+                <button
+                    class="btn-propose"
+                    (click)="abrirModalPropuesta()"
+                    *ngIf="isLoggedIn()"
+                >
+                    Proponer actividad
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ACTIVIDADES -->
+        <section class="voluntariado-main">
+
+            <div class="main-header">
+
+                <h2>
+                    Actividades de voluntariado
+
+                    <span class="count">
+                        ({{ tareasFiltradas.length }} resultados)
+                    </span>
+                </h2>
+
+                <div class="view-options">
+
+                    <button
+                        [class.active]="esVistaCuadricula"
+                        (click)="esVistaCuadricula = true"
+                        title="Vista en cuadrícula"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </button>
+
+                    <button
+                        [class.active]="!esVistaCuadricula"
+                        (click)="esVistaCuadricula = false"
+                        title="Vista en lista"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="tasks-grid"
+                [class.list-view]="!esVistaCuadricula"
+            >
+
+                <div *ngIf="loading" class="loading-state">
+                    Cargando actividades...
+                </div>
+
+
+                <article
+                    class="task-card"
+                    *ngFor="let tarea of tareasFiltradas | slice:0:limiteMostrar"
+                >
+
+                    <div class="task-image">
+
+                        <img
+                            [src]="tarea.imageUrl"
+                            [alt]="tarea.title"
+                        >
+
+                        <span
+                            class="task-category"
+                            [attr.data-cat]="tarea.category"
+                        >
+                            {{ tarea.category | uppercase }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="task-body">
+
+                        <h3>{{ tarea.title }}</h3>
+
+                        <p class="task-desc">
+                            {{ tarea.description }}
+                        </p>
+
+
+                        <div class="task-info">
+
+                            <div class="info-item">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+
+                                <span>
+                                    {{ tarea.activityDate | date:'dd/MM/yyyy' }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+
+                                <span>{{ tarea.location }}</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="task-footer">
+
+                        <div class="cupos">
+
+                            <label>PLAZAS DISPONIBLES</label>
+
+                            <p>
+                                <strong
+                                    [class.sin-plazas]="tarea.availablePlaces === 0"
+                                >
+                                    {{
+                                        tarea.availablePlaces ??
+                                        tarea.maxParticipants
+                                    }}
+                                </strong>
+
+                                / {{ tarea.maxParticipants }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="actions-container">
+
+                            <button
+                                *ngIf="isAdmin()"
+                                class="btn-icon btn-edit"
+                                (click)="abrirModalEditarTarea(tarea)"
+                                title="Editar actividad"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                            </button>
+
+
+                            <button
+                                *ngIf="isAdmin()"
+                                class="btn-icon btn-delete"
+                                (click)="eliminarTarea(tarea.id!)"
+                                title="Eliminar actividad"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                                </svg>
+                            </button>
+
+
+                            <button
+                                class="btn-apply btn-enrolled"
+                                *ngIf="isLoggedIn() && estaApuntado(tarea.id)"
+                                (click)="desapuntarse(tarea.id)"
+                            >
+                                Inscrito
+                            </button>
+
+
+                            <button
+                                class="btn-apply"
+                                *ngIf="
+                                    isLoggedIn() &&
+                                    !estaApuntado(tarea.id) &&
+                                    (
+                                        tarea.availablePlaces === undefined ||
+                                        tarea.availablePlaces > 0
+                                    )
+                                "
+                                (click)="apuntarse(tarea.id)"
+                            >
+                                Inscribirme
+                            </button>
+
+
+                            <button
+                                class="btn-full"
+                                *ngIf="
+                                    isLoggedIn() &&
+                                    !estaApuntado(tarea.id) &&
+                                    tarea.availablePlaces === 0
+                                "
+                                disabled
+                            >
+                                Completa
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <div
+                class="main-footer"
+                *ngIf="tareasFiltradas.length > limiteMostrar"
+            >
+                <button
+                    class="btn-load-more"
+                    (click)="verMasTareas()"
+                >
+                    Ver más actividades
+                </button>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- BOTÓN ADMIN -->
+    <button
+        *ngIf="isAdmin()"
+        class="fab"
+        (click)="abrirModalNuevaTarea()"
+        title="Añadir nueva actividad"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+        >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+    </button>
+
+
+    <!-- MODAL CREAR / EDITAR / PROPONER -->
+    <div
+        class="modal-overlay"
+        *ngIf="mostrarModal"
+        (click)="cerrarModal()"
+    >
+
+        <div
+            class="modal-card"
+            (click)="$event.stopPropagation()"
+        >
+
+            <div class="modal-header">
+
+                <h2>
+                    {{
+                        editandoId
+                            ? 'Editar actividad'
+                            : (
+                                esModoPropuesta
+                                    ? 'Proponer nueva actividad'
+                                    : 'Crear nueva actividad'
+                              )
+                    }}
+                </h2>
+
+                <button
+                    class="btn-close"
+                    (click)="cerrarModal()"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <div
+                class="alert alert-error"
+                *ngIf="mensajeError"
+            >
+                {{ mensajeError }}
+            </div>
+
+
+            <div
+                class="alert alert-success"
+                *ngIf="mensajeExito"
+            >
+                {{ mensajeExito }}
+            </div>
+
+
+            <form
+                (ngSubmit)="guardarTarea()"
+                #tareaForm="ngForm"
+            >
+
+                <div class="form-grid">
+
+                    <div class="form-group full">
+
+                        <label>
+                            Título de la
+                            {{ esModoPropuesta ? 'propuesta' : 'actividad' }}
+                        </label>
+
+                        <input
+                            type="text"
+                            [(ngModel)]="nuevaTarea.title"
+                            name="title"
+                            required
+                            placeholder="Ej.: Acompañamiento en salida cultural"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Descripción detallada</label>
+
+                        <textarea
+                            [(ngModel)]="nuevaTarea.description"
+                            name="description"
+                            required
+                            rows="3"
+                            placeholder="Describe la actividad y la participación de las personas voluntarias..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group half">
+
+                        <label>Tipo de actividad</label>
+
+                        <select
+                            [(ngModel)]="nuevaTarea.category"
+                            name="category"
+                            required
+                        >
+                            <option value="educativa">
+                                Apoyo educativo
+                            </option>
+
+                            <option value="salud">
+                                Autonomía y bienestar
+                            </option>
+
+                            <option value="ambiental">
+                                Ocio inclusivo
+                            </option>
+
+                            <option value="social">
+                                Acompañamiento e inclusión
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group half">
+
+                        <label>Dedicación</label>
+
+                        <select
+                            [(ngModel)]="nuevaTarea.difficulty"
+                            name="difficulty"
+                            required
+                        >
+                            <option value="Baja">Baja</option>
+                            <option value="Media">Media</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group third">
+
+                        <label>Fecha</label>
+
+                        <input
+                            type="date"
+                            [(ngModel)]="nuevaTarea.activityDate"
+                            name="activityDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group third">
+
+                        <label>Hora</label>
+
+                        <input
+                            type="time"
+                            [(ngModel)]="nuevaTarea.activityTime"
+                            name="activityTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group third">
+
+                        <label>Plazas</label>
+
+                        <input
+                            type="number"
+                            [(ngModel)]="nuevaTarea.maxParticipants"
+                            name="maxParticipants"
+                            required
+                            min="1"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>Ubicación</label>
+
+                        <input
+                            type="text"
+                            [(ngModel)]="nuevaTarea.location"
+                            name="location"
+                            required
+                            placeholder="Ej.: Centro de Sumando Capacidades"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <div class="label-with-link">
+
+                            <label>
+                                URL de la imagen (opcional)
+                            </label>
+
+                            <a
+                                href="https://unsplash.com/es"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="link-unsplash"
+                            >
+                                Buscar en Unsplash
+                            </a>
+
+                        </div>
+
+                        <input
+                            type="text"
+                            [(ngModel)]="nuevaTarea.imageUrl"
+                            name="imageUrl"
+                            placeholder="https://ejemplo.com/imagen.jpg"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        (click)="cerrarModal()"
+                    >
+                        Cancelar
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-save"
+                        [disabled]="!tareaForm.form.valid"
+                    >
+                        {{
+                            editandoId
+                                ? 'Guardar cambios'
+                                : (
+                                    esModoPropuesta
+                                        ? 'Enviar propuesta'
+                                        : 'Crear actividad'
+                                  )
+                        }}
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONFIRMACIÓN DE BORRADO -->
+    <div
+        class="modal-overlay"
+        *ngIf="mostrarConfirmarBorrado"
+        (click)="cerrarConfirmarBorrado()"
+    >
+
+        <div
+            class="modal-card modal-confirm"
+            (click)="$event.stopPropagation()"
+        >
+
+            <div class="confirm-icon-wrapper">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                </svg>
+            </div>
+
+            <h2>¿Eliminar actividad?</h2>
+
+            <p>
+                Esta acción no se puede deshacer. Se eliminarán la actividad
+                y las inscripciones asociadas.
+            </p>
+
+            <div class="confirm-actions">
+
+                <button
+                    class="btn-cancel"
+                    (click)="cerrarConfirmarBorrado()"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    class="btn-confirm-delete"
+                    (click)="confirmarBorrado()"
+                >
+                    Eliminar definitivamente
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

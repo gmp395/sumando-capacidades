@@ -1,0 +1,357 @@
+<div class="mensajes-page">
+
+    <div class="content-wrapper">
+
+        <header class="page-header">
+
+            <div class="header-content">
+
+                <span class="page-eyebrow">
+                    MI ESPACIO
+                </span>
+
+                <h1>Mis mensajes</h1>
+
+                <p>
+                    Consulta el estado de tus consultas
+                    y las respuestas recibidas desde Sumando Capacidades.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- Loading -->
+        <div
+            *ngIf="loading"
+            class="loading-state"
+        >
+            <div class="spinner"></div>
+
+            <span>
+                Cargando tus mensajes...
+            </span>
+        </div>
+
+
+        <!-- Error -->
+        <div
+            class="error-state"
+            *ngIf="!loading && errorMessage"
+        >
+            <div class="error-icon">!</div>
+
+            <h2>No se han podido cargar tus mensajes</h2>
+
+            <p>
+                {{ errorMessage }}
+            </p>
+
+            <button
+                type="button"
+                class="btn-retry"
+                (click)="cargarMisMensajes()"
+            >
+                Intentar de nuevo
+            </button>
+        </div>
+
+
+        <!-- Mensajes -->
+        <div
+            class="messages-layout"
+            *ngIf="
+                !loading &&
+                !errorMessage &&
+                messages.length > 0
+            "
+        >
+
+            <!-- LISTADO -->
+            <div
+                class="messages-list"
+                [class.hidden-mobile]="selectedMessage"
+            >
+
+                <div class="list-header">
+                    MIS CONSULTAS
+                </div>
+
+                <div class="scroll-area">
+
+                    <button
+                        type="button"
+                        class="message-card"
+                        *ngFor="let msg of messages"
+                        [class.active]="selectedMessage?.id === msg.id"
+                        (click)="viewMessage(msg)"
+                    >
+
+                        <div class="card-avatar">
+                            {{ getInitials(msg.nombre) }}
+                        </div>
+
+                        <div class="card-content">
+
+                            <div class="msg-header">
+
+                                <span class="msg-author">
+                                    {{ msg.asunto }}
+                                </span>
+
+                                <span class="msg-date">
+                                    {{ msg.fechaEnvio | date:'dd/MM' }}
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="status-indicator"
+                                [class.responded]="msg.respuesta"
+                            >
+
+                                <span *ngIf="msg.respuesta">
+                                    Respondido
+                                </span>
+
+                                <span *ngIf="!msg.respuesta">
+                                    Pendiente
+                                </span>
+
+                            </div>
+
+                            <div class="msg-preview">
+                                {{ msg.mensaje }}
+                            </div>
+
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETALLE -->
+            <div
+                class="message-detail"
+                *ngIf="selectedMessage"
+            >
+
+                <div class="detail-header">
+
+                    <div class="author-meta">
+
+                        <div class="detail-avatar">
+                            {{ getInitials(selectedMessage.nombre) }}
+                        </div>
+
+                        <div class="author-info">
+
+                            <h2>
+                                {{ selectedMessage.asunto }}
+                            </h2>
+
+                            <p>
+                                Enviado el
+                                {{ selectedMessage.fechaEnvio | date:'dd/MM/yyyy HH:mm' }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="btn-close-detail"
+                        (click)="closeDetail()"
+                        aria-label="Cerrar detalle del mensaje"
+                    >
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+
+                    </button>
+
+                </div>
+
+
+                <div class="detail-body">
+
+                    <!-- Mensaje del usuario -->
+                    <div class="message-bubble user-msg">
+
+                        <label>
+                            TU CONSULTA
+                        </label>
+
+                        <p>
+                            {{ selectedMessage.mensaje }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Respuesta -->
+                    <div
+                        class="message-bubble admin-msg"
+                        *ngIf="selectedMessage.respuesta"
+                    >
+
+                        <div class="bubble-header">
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+
+                            <span>
+                                Respuesta de Sumando Capacidades
+                            </span>
+
+                            <span
+                                class="bubble-date"
+                                *ngIf="selectedMessage.fechaRespuesta"
+                            >
+                                {{ selectedMessage.fechaRespuesta | date:'dd/MM/yyyy HH:mm' }}
+                            </span>
+
+                        </div>
+
+                        <p>
+                            {{ selectedMessage.respuesta }}
+                        </p>
+
+                    </div>
+
+
+                    <!-- Pendiente -->
+                    <div
+                        class="pending-notice"
+                        *ngIf="!selectedMessage.respuesta"
+                    >
+
+                        <div class="notice-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M12 7v5l3 2"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <strong>
+                                Consulta pendiente
+                            </strong>
+
+                            <p>
+                                Tu mensaje se ha recibido correctamente
+                                y todavía no tiene respuesta.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Placeholder -->
+            <div
+                class="detail-placeholder"
+                *ngIf="!selectedMessage"
+            >
+
+                <div class="placeholder-illustration">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+
+                </div>
+
+                <p>
+                    Selecciona una consulta para ver los detalles.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Sin mensajes -->
+        <div
+            class="empty-state"
+            *ngIf="
+                !loading &&
+                !errorMessage &&
+                messages.length === 0
+            "
+        >
+
+            <div class="empty-icon">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+
+            </div>
+
+            <h2>
+                No tienes mensajes todavía
+            </h2>
+
+            <p>
+                Las consultas que envíes aparecerán aquí
+                cuando estén asociadas a tu cuenta.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

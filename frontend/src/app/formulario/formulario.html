@@ -1,0 +1,522 @@
+<div class="registration-page">
+
+  <div class="form-card">
+
+    <div class="form-header">
+
+      <div class="header-subtitle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+
+        VOLUNTARIADO
+      </div>
+
+      <h2>Súmate a Sumando Capacidades</h2>
+
+      <p>
+        Completa este formulario para crear tu perfil de voluntariado.
+        Podrás indicar tu disponibilidad, tus intereses y las habilidades
+        que te gustaría aportar.
+      </p>
+
+    </div>
+
+    <form
+      [formGroup]="voluntarioForm"
+      (ngSubmit)="onSubmit()"
+      class="form-body"
+    >
+
+      <!-- DATOS PERSONALES -->
+      <div class="form-section">
+
+        <div class="section-header">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            fill="#0ea5e9"
+            viewBox="0 0 16 16"
+          >
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+          </svg>
+
+          <div>
+            <h3 class="section-title">
+              Información personal
+            </h3>
+
+            <p class="section-desc">
+              Datos básicos para crear tu perfil.
+            </p>
+          </div>
+        </div>
+
+        <div class="fields-container grid-2-cols">
+
+          <div class="input-group">
+            <label>Nombre</label>
+
+            <input
+              type="text"
+              formControlName="nombre"
+              placeholder="Ej. María"
+              [class.invalid]="
+                voluntarioForm.get('nombre')?.invalid &&
+                voluntarioForm.get('nombre')?.touched
+              "
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Apellidos</label>
+
+            <input
+              type="text"
+              formControlName="apellidos"
+              placeholder="Ej. García Fernández"
+              [class.invalid]="
+                voluntarioForm.get('apellidos')?.invalid &&
+                voluntarioForm.get('apellidos')?.touched
+              "
+            >
+          </div>
+
+        </div>
+
+        <div class="fields-container grid-2-cols field-row">
+
+          <div class="input-group">
+            <label>Correo electrónico</label>
+
+            <div class="input-with-icon">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="#8898aa"
+                viewBox="0 0 16 16"
+              >
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+              </svg>
+
+              <input
+                type="email"
+                formControlName="email"
+                placeholder="nombre@correo.com"
+                [class.invalid]="
+                  voluntarioForm.get('email')?.invalid &&
+                  voluntarioForm.get('email')?.touched
+                "
+              >
+
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Contraseña</label>
+
+            <div class="password-field">
+
+              <div class="input-with-icon">
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="#8898aa"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                </svg>
+
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  formControlName="password"
+                  placeholder="Mínimo 6 caracteres"
+                  [class.invalid]="
+                    voluntarioForm.get('password')?.invalid &&
+                    voluntarioForm.get('password')?.touched
+                  "
+                >
+
+              </div>
+
+              <button
+                type="button"
+                class="toggle-password"
+                (click)="showPassword = !showPassword"
+                *ngIf="voluntarioForm.get('password')?.value?.length > 0"
+                [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+              >
+                <svg
+                  *ngIf="!showPassword"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+
+                <svg
+                  *ngIf="showPassword"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="fields-container grid-2-cols field-row">
+
+          <div class="input-group">
+            <label>Número de teléfono</label>
+
+            <input
+              type="tel"
+              formControlName="telefono"
+              placeholder="+34 600 000 000"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Fecha de nacimiento</label>
+
+            <input
+              type="date"
+              formControlName="fechaNacimiento"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- DISPONIBILIDAD -->
+      <div class="form-section">
+
+        <div class="section-header center-header">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            fill="#0ea5e9"
+            viewBox="0 0 16 16"
+          >
+            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+          </svg>
+
+          <div>
+            <h3 class="section-title">
+              Disponibilidad
+            </h3>
+
+            <p class="section-desc">
+              Indica los días en los que habitualmente podrías participar.
+            </p>
+          </div>
+
+        </div>
+
+        <div
+          class="days-pill-group centered-pills"
+          formGroupName="disponibilidad"
+        >
+          <label
+            class="day-pill"
+            *ngFor="let day of diasSemana"
+          >
+            <input
+              type="checkbox"
+              [formControlName]="day"
+            >
+
+            <span class="pill-text">
+              {{ day }}
+            </span>
+          </label>
+        </div>
+
+      </div>
+
+      <hr class="section-divider">
+
+      <!-- INTERESES -->
+      <div class="form-section">
+
+        <div class="section-header">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            fill="#0ea5e9"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M3.682 6.84A4.001 4.001 0 0 1 7.5 3a4 4 0 0 1 3.818 3.84c.036.565-.018 1.132-.16 1.68L8 15.5l-3.158-6.98a5.2 5.2 0 0 1-.16-1.68"/>
+            <path d="M8 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
+          </svg>
+
+          <div>
+            <h3 class="section-title">
+              Intereses y habilidades
+            </h3>
+
+            <p class="section-desc">
+              Cuéntanos en qué actividades te gustaría colaborar.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="input-group full-width area-block">
+
+          <label>Áreas de interés</label>
+
+          <div
+            class="days-pill-group"
+            formGroupName="areaInteres"
+          >
+
+            <label class="day-pill">
+              <input
+                type="checkbox"
+                formControlName="educacion"
+              >
+              <span class="pill-text">
+                Apoyo educativo
+              </span>
+            </label>
+
+            <label class="day-pill">
+              <input
+                type="checkbox"
+                formControlName="sanidad"
+              >
+              <span class="pill-text">
+                Autonomía personal
+              </span>
+            </label>
+
+            <label class="day-pill">
+              <input
+                type="checkbox"
+                formControlName="medioAmbiente"
+              >
+              <span class="pill-text">
+                Ocio inclusivo
+              </span>
+            </label>
+
+            <label class="day-pill">
+              <input
+                type="checkbox"
+                formControlName="comunidad"
+              >
+              <span class="pill-text">
+                Acompañamiento
+              </span>
+            </label>
+
+            <label class="day-pill">
+              <input
+                type="checkbox"
+                formControlName="logistica"
+              >
+              <span class="pill-text">
+                Apoyo a actividades
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <div class="input-group full-width area-block">
+
+          <label>
+            ¿Hay otra forma en la que te gustaría colaborar?
+          </label>
+
+          <input
+            type="text"
+            formControlName="otroArea"
+            placeholder="Cuéntanos qué tipo de colaboración te interesa"
+          >
+
+        </div>
+
+        <div class="input-group full-width">
+
+          <label>
+            Habilidades o experiencia
+            <span class="optional">(opcional)</span>
+          </label>
+
+          <textarea
+            formControlName="habilidades"
+            class="fixed-textarea"
+            placeholder="Por ejemplo: acompañamiento, educación, deporte, informática, organización de actividades..."
+          ></textarea>
+
+          <small class="help-text">
+            Puedes mencionar formación, experiencia, conocimientos
+            o habilidades que consideres útiles.
+          </small>
+
+        </div>
+
+      </div>
+
+      <!-- INFORMACIÓN -->
+      <div class="alert-box">
+
+        <div class="alert-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="#1d9bf0"
+            viewBox="0 0 16 16"
+          >
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+          </svg>
+        </div>
+
+        <div class="alert-content">
+          <h4>Antes de enviar tu solicitud</h4>
+
+          <p>
+            La información facilitada nos ayudará a conocer tu disponibilidad
+            e intereses. La documentación y orientaciones necesarias para
+            participar en las actividades estarán disponibles durante el
+            proceso de incorporación al voluntariado.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- BOTONES -->
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="btn-submit"
+        >
+          Crear mi perfil
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path fill-rule="evenodd" d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="btn-cancel"
+          (click)="onCancel()"
+        >
+          Limpiar formulario
+        </button>
+
+      </div>
+
+      <div
+        class="form-error-msg"
+        *ngIf="formError"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+
+        {{ formError }}
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- MODAL ÉXITO -->
+<div
+  class="success-modal-overlay"
+  *ngIf="showSuccessModal"
+>
+  <div class="success-modal">
+
+    <div class="success-icon-circle">
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+      >
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </svg>
+
+    </div>
+
+    <h3>
+      ¡Bienvenido, {{ voluntarioForm.get('nombre')?.value }}!
+    </h3>
+
+    <p>
+      Tu perfil se ha creado correctamente.
+      Ya puedes iniciar sesión y consultar las actividades
+      disponibles en Sumando Capacidades.
+    </p>
+
+    <button
+      class="btn-modal-close"
+      (click)="closeModal()"
+    >
+      Ir a iniciar sesión
+    </button>
+
+  </div>
+</div>

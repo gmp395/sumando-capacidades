@@ -1,0 +1,208 @@
+.footer {
+    width: 100%;
+    margin-top: 100px;
+    padding: 42px 40px;
+
+    background-color: rgb(0, 0, 32);
+    color: white;
+}
+
+
+.footer-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: end;
+    gap: 60px;
+}
+
+
+/* =========================
+   IDENTIDAD
+========================= */
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.titulo-footer {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+
+.footer-info p {
+    margin: 0;
+}
+
+
+.footer-lema {
+    margin-top: 4px !important;
+
+    color: #a0aec0;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+.footer-copy {
+    color: #718096;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   REDES SOCIALES
+========================= */
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.social-title {
+    color: #a0aec0;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.social-links a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #334155;
+    border-radius: 50%;
+
+    color: #a0aec0;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.social-links a:hover {
+    color: white;
+
+    border-color: #3da9fc;
+
+    background-color: rgba(61, 169, 252, 0.12);
+
+    transform: translateY(-2px);
+}
+
+
+.social-links svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* =========================
+   ENLACES
+========================= */
+
+.footer-enlaces {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+
+.footer-enlaces a {
+    color: #a0aec0;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+
+.footer-enlaces a:hover {
+    color: white;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 850px) {
+
+    .footer {
+        padding: 36px 24px;
+    }
+
+
+    .footer-contenedor {
+        grid-template-columns: 1fr;
+        gap: 28px;
+
+        align-items: start;
+    }
+
+
+    .footer-social {
+        align-items: flex-start;
+    }
+
+
+    .footer-enlaces {
+        flex-wrap: wrap;
+        gap: 16px 24px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .footer {
+        margin-top: 70px;
+        padding: 32px 20px;
+    }
+
+
+    .titulo-footer {
+        font-size: 15px;
+    }
+
+
+    .footer-enlaces {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+}

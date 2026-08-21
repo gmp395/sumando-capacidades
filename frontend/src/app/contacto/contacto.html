@@ -1,0 +1,414 @@
+<div class="pagina-contacto">
+
+    <!-- Cabecera -->
+    <header class="contact-header">
+
+        <span class="contact-eyebrow">
+            SUMANDO CAPACIDADES
+        </span>
+
+        <h1>Contacta con nosotros</h1>
+
+        <p class="contact-intro">
+            Si quieres saber más sobre nuestras actividades,
+            participar como persona voluntaria o resolver cualquier duda,
+            puedes escribirnos a través de este formulario.
+        </p>
+
+    </header>
+
+    <!-- Información -->
+    <section class="contact-info">
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+
+            <h3>Voluntariado</h3>
+
+            <p>
+                Consulta cualquier duda sobre el proceso de incorporación,
+                disponibilidad o participación en actividades.
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+            </div>
+
+            <h3>Actividades</h3>
+
+            <p>
+                Pregúntanos sobre las actividades disponibles,
+                inscripciones o cualquier cuestión relacionada con tu participación.
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+
+            <h3>Familias y participantes</h3>
+
+            <p>
+                Puedes solicitar información sobre acompañamiento,
+                participación y recursos disponibles.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Formulario -->
+    <section class="contact-section">
+
+        <div class="section-heading">
+
+            <span class="section-number">01</span>
+
+            <div>
+                <h2>Envíanos un mensaje</h2>
+
+                <p>
+                    Completa los siguientes datos y podremos gestionar
+                    tu consulta desde la plataforma.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="form-container">
+
+            <form
+                class="contact-form"
+                (ngSubmit)="onSubmit()"
+                #contactForm="ngForm"
+            >
+
+                <div class="fields-grid">
+
+                    <div class="form-group">
+
+                        <label for="nombre">
+                            Nombre completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            [(ngModel)]="contacto.nombre"
+                            placeholder="Tu nombre y apellidos"
+                            required
+                            #nombre="ngModel"
+                            [class.invalid]="nombre.invalid && nombre.touched"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            [(ngModel)]="contacto.email"
+                            placeholder="nombre@correo.com"
+                            required
+                            email
+                            #email="ngModel"
+                            [class.invalid]="email.invalid && email.touched"
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Asunto -->
+                <div class="form-group">
+
+                    <label>
+                        ¿Sobre qué quieres escribirnos?
+                    </label>
+
+                    <div class="subject-grid">
+
+                        <label
+                            class="subject-option"
+                            [class.selected]="contacto.asunto === 'General'"
+                        >
+                            <input
+                                type="radio"
+                                name="asunto"
+                                [(ngModel)]="contacto.asunto"
+                                value="General"
+                                required
+                            >
+
+                            <span class="option-text">
+                                Consulta general
+                            </span>
+                        </label>
+
+                        <label
+                            class="subject-option"
+                            [class.selected]="contacto.asunto === 'Voluntariado'"
+                        >
+                            <input
+                                type="radio"
+                                name="asunto"
+                                [(ngModel)]="contacto.asunto"
+                                value="Voluntariado"
+                                required
+                            >
+
+                            <span class="option-text">
+                                Voluntariado
+                            </span>
+                        </label>
+
+                        <label
+                            class="subject-option"
+                            [class.selected]="contacto.asunto === 'Actividades'"
+                        >
+                            <input
+                                type="radio"
+                                name="asunto"
+                                [(ngModel)]="contacto.asunto"
+                                value="Actividades"
+                                required
+                            >
+
+                            <span class="option-text">
+                                Actividades
+                            </span>
+                        </label>
+
+                        <label
+                            class="subject-option"
+                            [class.selected]="contacto.asunto === 'Familias'"
+                        >
+                            <input
+                                type="radio"
+                                name="asunto"
+                                [(ngModel)]="contacto.asunto"
+                                value="Familias"
+                                required
+                            >
+
+                            <span class="option-text">
+                                Familias
+                            </span>
+                        </label>
+
+                        <label
+                            class="subject-option"
+                            [class.selected]="contacto.asunto === 'Sugerencias'"
+                        >
+                            <input
+                                type="radio"
+                                name="asunto"
+                                [(ngModel)]="contacto.asunto"
+                                value="Sugerencias"
+                                required
+                            >
+
+                            <span class="option-text">
+                                Sugerencias
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <!-- Mensaje -->
+                <div class="form-group">
+
+                    <label for="mensaje">
+                        Mensaje
+                    </label>
+
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        rows="6"
+                        [(ngModel)]="contacto.mensaje"
+                        placeholder="Cuéntanos en qué podemos ayudarte..."
+                        required
+                        #mensaje="ngModel"
+                        [class.invalid]="mensaje.invalid && mensaje.touched"
+                    ></textarea>
+
+                </div>
+
+                <!-- Privacidad -->
+                <div class="checkbox-group">
+
+                    <input
+                        type="checkbox"
+                        id="privacidad"
+                        name="privacidad"
+                        [(ngModel)]="contacto.privacidad"
+                        required
+                        #priv="ngModel"
+                    >
+
+                    <label for="privacidad">
+                        He leído y acepto la
+                        <a
+                            routerLink="/privacidad"
+                            target="_blank"
+                        >
+                            Política de Privacidad
+                        </a>.
+                    </label>
+
+                </div>
+
+                <!-- Error -->
+                <div
+                    class="error-container"
+                    *ngIf="mostrarError"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+
+                    <span>
+                        {{ mensajeError }}
+                    </span>
+                </div>
+
+                <!-- Submit -->
+                <button
+                    type="submit"
+                    class="btn-submit"
+                    [disabled]="!contactForm.form.valid || enviando"
+                    [class.btn-loading]="enviando"
+                >
+
+                    <span *ngIf="!enviando">
+                        Enviar mensaje
+                    </span>
+
+                    <span
+                        *ngIf="enviando"
+                        class="loader-inline"
+                    ></span>
+
+                    <span *ngIf="enviando">
+                        Enviando...
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- MODAL DE ÉXITO -->
+
+<div
+    class="success-overlay"
+    *ngIf="mostrarExito"
+    (click)="cerrarExito()"
+>
+
+    <div
+        class="success-modal"
+        (click)="$event.stopPropagation()"
+    >
+
+        <div class="success-icon">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+
+        </div>
+
+        <h3>Mensaje enviado</h3>
+
+        <p>
+            Hemos recibido tu consulta correctamente.
+            Podrás realizar su seguimiento desde tu área personal
+            si has iniciado sesión.
+        </p>
+
+        <button
+            class="btn-close-modal"
+            (click)="cerrarExito()"
+        >
+            Entendido
+        </button>
+
+    </div>
+
+</div>

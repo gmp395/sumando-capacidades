@@ -1,0 +1,340 @@
+<div class="directrices-layout">
+
+    <aside class="directrices-sidebar">
+
+        <div class="sidebar-header">
+            <h2>Centro de Recursos</h2>
+            <p>
+                Documentos, guías y materiales de apoyo para
+                personas voluntarias, familias y equipo de la entidad.
+            </p>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Todos los recursos'"
+                (click)="filtrarPorCategoria('Todos los recursos')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+
+                Todos los recursos
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Organización'"
+                (click)="filtrarPorCategoria('Organización')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 12l2 2 4-4"></path>
+                </svg>
+
+                Organización
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Voluntariado'"
+                (click)="filtrarPorCategoria('Voluntariado')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path d="M12 21s-6-4.35-9-8.5C.5 9 2.5 4.5 6.5 4.5A5.3 5.3 0 0 1 12 8a5.3 5.3 0 0 1 5.5-3.5c4 0 6 4.5 3.5 8C18 16.65 12 21 12 21z"></path>
+                </svg>
+
+                Voluntariado
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Inclusión'"
+                (click)="filtrarPorCategoria('Inclusión')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <circle cx="12" cy="5" r="3"></circle>
+                    <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+                </svg>
+
+                Inclusión
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Seguridad'"
+                (click)="filtrarPorCategoria('Seguridad')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+
+                Seguridad
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Legal'"
+                (click)="filtrarPorCategoria('Legal')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+
+                Legal
+            </a>
+
+            <a
+                href="javascript:void(0)"
+                class="nav-item"
+                [class.active]="categoriaActiva === 'Familias'"
+                (click)="filtrarPorCategoria('Familias')"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="18"
+                     height="18"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M17 11a4 4 0 1 0 0-8"></path>
+                    <path d="M3 21v-2a6 6 0 0 1 12 0v2"></path>
+                    <path d="M16 21v-2a6 6 0 0 1 5-5.9"></path>
+                </svg>
+
+                Familias
+            </a>
+
+        </nav>
+
+        <div class="sidebar-help-card">
+            <h4>¿Necesitas ayuda?</h4>
+
+            <p>
+                Si no encuentras la información que necesitas,
+                puedes ponerte en contacto con nuestro equipo.
+            </p>
+
+            <button
+                class="btn-help"
+                routerLink="/contacto"
+            >
+                Contactar
+            </button>
+        </div>
+
+    </aside>
+
+    <main class="directrices-main">
+
+        <div class="repo-banner">
+
+            <div class="repo-banner-content">
+                <h2>Documentación y recursos</h2>
+
+                <p>
+                    Consulta información sobre voluntariado,
+                    inclusión, seguridad y funcionamiento de
+                    Sumando Capacidades.
+                </p>
+            </div>
+
+            <svg
+                class="repo-banner-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+            >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+
+        </div>
+
+        <div class="repo-controls">
+
+            <div class="search-box">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+
+                <input
+                    type="text"
+                    placeholder="Buscar documentos por título..."
+                    (input)="buscarDirectrices($event)"
+                >
+
+            </div>
+
+            <div class="filter-actions">
+
+                <button
+                    class="btn-filter"
+                    [class.active-filter]="ordenActivo"
+                    (click)="ordenarPorRecientes()"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <line x1="12" y1="20" x2="12" y2="10"></line>
+                        <line x1="18" y1="20" x2="18" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="16"></line>
+                    </svg>
+
+                    Más recientes
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="repo-grid">
+
+            <div
+                class="doc-card"
+                *ngFor="let doc of directricesFiltradas"
+            >
+
+                <div class="doc-card-header">
+
+                    <div
+                        class="doc-icon"
+                        [ngClass]="getIconClass(doc.iconColor)"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </div>
+
+                    <span
+                        class="doc-badge"
+                        [ngClass]="getBadgeClass(doc.category)"
+                    >
+                        {{ doc.category }}
+                    </span>
+
+                </div>
+
+                <div class="doc-card-body">
+
+                    <h3>{{ doc.title }}</h3>
+
+                    <p class="doc-description">
+                        {{ doc.description }}
+                    </p>
+
+                    <div class="doc-note">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15"
+                            height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+
+                        <span>
+                            {{ getDocumentNote(doc.category) }}
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            class="empty-state"
+            *ngIf="directricesFiltradas.length === 0"
+        >
+            <p>
+                No se han encontrado recursos con estos criterios.
+            </p>
+        </div>
+
+    </main>
+
+</div>
