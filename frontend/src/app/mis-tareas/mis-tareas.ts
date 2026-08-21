@@ -220,6 +220,6 @@ export class MisTareas implements OnInit {
       event.target as HTMLImageElement;
 
     imagen.src =
-      '/images/activities/habilidades-sociales.jpg';
+      'images/activities/habilidades-sociales.jpg';
   }
 }

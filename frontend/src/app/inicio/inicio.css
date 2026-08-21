@@ -60,7 +60,7 @@ html {
             rgba(0, 0, 0, 0.58),
             rgba(0, 0, 0, 0.58)
         ),
-        url("/imagenPrincipal.jpg");
+        url("imagenPrincipal.jpg");
 
     background-size: cover;
     background-position: center;
