@@ -85,14 +85,14 @@ export class AuthService {
         };
 
         localStorage.setItem(
-          'token',
-          response.token
-        );
+  'sumando_capacidades_token',
+  response.token
+);
 
-        localStorage.setItem(
-          'user',
-          JSON.stringify(userInfo)
-        );
+localStorage.setItem(
+  'sumando_capacidades_user',
+  JSON.stringify(userInfo)
+);
 
         this.userSubject.next(userInfo);
 

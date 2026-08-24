@@ -1,8 +1,22 @@
 # Sumando Capacidades
 
-Aplicación web full stack para la gestión del voluntariado de una ONG ficticia orientada a favorecer la **inclusión, la autonomía y la participación en la comunidad de personas con discapacidad**.
+Aplicación web full stack para la gestión de una organización orientada al apoyo, la autonomía y la inclusión de personas con discapacidad.
 
-El proyecto fue desarrollado originalmente como **Trabajo de Fin de Grado del Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)** y posteriormente revisado y actualizado para mejorar su diseño, organización, funcionamiento y presentación.
+El proyecto parte de un **Trabajo de Fin de Grado del Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)** desarrollado originalmente en equipo por **Vicente Arnal González y Gema Miguel**.
+
+Posteriormente, el proyecto ha sido **revisado, reorganizado y actualizado por Gema Miguel** con el objetivo de mejorar su presentación, mantenimiento y funcionamiento como proyecto de portfolio. Esta revisión ha incluido cambios en la identidad de la aplicación, configuración técnica, seguridad, datos de demostración, documentación, despliegue del frontend y organización general del repositorio.
+
+**Sumando Capacidades es una entidad ficticia creada exclusivamente para el desarrollo y presentación del proyecto.**
+
+---
+
+## Enlaces
+
+- **Repositorio:** [GitHub](https://github.com/gmp395/pe-gestion-ong-tfg)
+- **Demo visual:** [GitHub Pages](https://gmp395.github.io/pe-gestion-ong-tfg/)
+
+> La versión publicada en GitHub Pages permite consultar la interfaz de la aplicación.  
+> Las funcionalidades que requieren autenticación, acceso a la base de datos o comunicación con el backend deben ejecutarse en entorno local.
 
 ---
 
@@ -11,48 +25,32 @@ El proyecto fue desarrollado originalmente como **Trabajo de Fin de Grado del Ci
 - [Descripción](#descripción)
 - [Objetivos](#objetivos)
 - [Funcionalidades](#funcionalidades)
-- [Tipos de usuario](#tipos-de-usuario)
-- [Tecnologías utilizadas](#tecnologías-utilizadas)
-- [Arquitectura del proyecto](#arquitectura-del-proyecto)
-- [Capturas de pantalla](#capturas-de-pantalla)
-  - [Página de inicio](#página-de-inicio)
-  - [Voluntariado](#voluntariado)
-  - [Inicio de sesión](#inicio-de-sesión)
-  - [Área personal](#área-personal)
-  - [Administración](#administración)
-  - [Noticias](#noticias)
-  - [Contacto](#contacto)
+- [Roles de usuario](#roles-de-usuario)
+- [Tecnologías](#tecnologías)
+- [Arquitectura](#arquitectura)
+- [Capturas de la aplicación](#capturas-de-la-aplicación)
 - [Instalación y ejecución](#instalación-y-ejecución)
-- [Credenciales de demostración](#credenciales-de-demostración)
-- [Configuración local](#configuración-local)
+- [Credenciales de prueba](#credenciales-de-prueba)
 - [Base de datos](#base-de-datos)
+- [Configuración local](#configuración-local)
 - [Seguridad](#seguridad)
-- [Responsive Design](#responsive-design)
+- [Diseño responsive](#diseño-responsive)
+- [Revisión y actualización del proyecto](#revisión-y-actualización-del-proyecto)
+- [GitHub Pages](#github-pages)
 - [Estado del proyecto](#estado-del-proyecto)
-- [Autoría](#autoría)
+- [Autores](#autores)
 
 ---
 
 ## Descripción
 
-**Sumando Capacidades** es una plataforma web diseñada para facilitar la gestión de actividades de voluntariado y la participación de personas voluntarias en una organización social.
+**Sumando Capacidades** es una aplicación web destinada a centralizar diferentes procesos relacionados con la gestión de una entidad social.
 
-La aplicación permite consultar actividades, registrarse como voluntario, gestionar inscripciones, consultar mensajes y acceder a diferentes herramientas de administración según el rol del usuario.
+La plataforma combina una parte pública con espacios privados diferenciados para personas voluntarias y administradores.
 
-La identidad de **Sumando Capacidades** es ficticia y ha sido creada con fines académicos y de portfolio.
+Desde la parte pública es posible consultar información sobre la entidad, actividades, noticias, directrices y vías de participación. Los usuarios registrados pueden acceder a su área personal y gestionar su relación con las actividades, mientras que el perfil de administración dispone de herramientas adicionales para gestionar propuestas, participantes, mensajes y contenidos.
 
-La propuesta se articula alrededor de tres conceptos principales:
-
-- **Inclusión**
-- **Autonomía**
-- **Comunidad**
-
-## Enlaces
-
-- **Repositorio:** [GitHub](https://github.com/gmp395/pe-gestion-ong-tfg)
-- **Demo:** [GitHub Pages](https://gmp395.github.io/pe-gestion-ong-tfg/)
-
-> La demo publicada en GitHub Pages permite visualizar la interfaz de la aplicación. Las funcionalidades que requieren conexión con el backend deben ejecutarse en entorno local.
+El proyecto integra frontend, backend y base de datos, incorporando autenticación mediante JWT y permisos diferenciados según el rol de usuario.
 
 ---
 
@@ -60,72 +58,78 @@ La propuesta se articula alrededor de tres conceptos principales:
 
 Los principales objetivos del proyecto son:
 
-- Facilitar el acceso a actividades de voluntariado.
-- Permitir el registro y autenticación de usuarios.
-- Gestionar la inscripción de voluntarios en actividades.
+- Facilitar el acceso a información sobre actividades y servicios.
+- Permitir el registro y autenticación de personas voluntarias.
+- Gestionar inscripciones y participación en actividades.
+- Centralizar propuestas de nuevas actividades.
+- Gestionar participantes desde el panel de administración.
+- Facilitar la comunicación entre usuarios y organización.
+- Publicar noticias y contenidos informativos.
 - Diferenciar funcionalidades según el rol del usuario.
-- Facilitar la comunicación entre usuarios y administración.
-- Gestionar propuestas y participantes desde un panel administrativo.
-- Mantener una interfaz clara, accesible y responsive.
-- Aplicar una arquitectura frontend/backend separada.
-- Integrar persistencia de datos mediante una base de datos relacional.
+- Mantener una interfaz adaptable a diferentes dispositivos.
+- Integrar frontend, backend y base de datos en una aplicación completa.
 
 ---
 
 ## Funcionalidades
 
-### Funcionalidades públicas
+### Área pública
 
-- Página de inicio informativa.
-- Consulta de actividades de voluntariado.
-- Consulta de noticias.
-- Consulta de directrices y recursos.
-- Formulario de contacto.
-- Registro de nuevos usuarios.
+Sin iniciar sesión es posible acceder a:
+
+- Página de inicio.
+- Información sobre la organización.
+- Actividades de voluntariado.
+- Directrices y recursos.
+- Noticias.
+- Formulario de registro.
 - Inicio de sesión.
-- Recuperación de contraseña.
+- Formulario de contacto.
+- Política de privacidad.
+- Términos y condiciones.
 
-### Área de usuario
+### Área de voluntariado
 
-Una vez autenticado, el usuario puede:
+Las personas registradas pueden:
 
-- Consultar su perfil.
+- Iniciar y cerrar sesión.
+- Consultar actividades disponibles.
 - Inscribirse en actividades.
-- Consultar sus próximas actividades.
-- Cancelar una inscripción.
-- Consultar sus mensajes.
-- Consultar las respuestas recibidas desde la organización.
-- Cerrar sesión.
+- Consultar sus actividades.
+- Gestionar su participación.
+- Consultar mensajes relacionados con su cuenta.
+- Acceder a su espacio personal.
 
 ### Área de administración
 
-Los usuarios con rol de administrador pueden:
+El rol de administrador permite:
 
 - Gestionar propuestas de actividades.
-- Aprobar propuestas y convertirlas en actividades programadas.
-- Rechazar propuestas.
-- Consultar participantes inscritos en las actividades.
-- Gestionar los mensajes recibidos mediante el formulario de contacto.
-- Responder consultas.
-- Crear, modificar y eliminar noticias.
+- Consultar participantes.
+- Gestionar inscripciones y participación.
+- Consultar mensajes recibidos.
+- Crear y gestionar noticias.
+- Supervisar información relacionada con actividades y usuarios.
 
 ---
 
-## Tipos de usuario
+## Roles de usuario
 
-La aplicación contempla dos roles principales:
+La aplicación diferencia dos roles principales.
 
 ### Voluntario
 
-Puede registrarse, iniciar sesión, consultar actividades y gestionar su participación.
+Usuario registrado que puede consultar actividades, participar en ellas y acceder a su área personal.
 
 ### Administrador
 
-Dispone de funcionalidades adicionales para gestionar contenidos, propuestas, participantes y comunicaciones.
+Usuario con permisos adicionales para gestionar contenidos, propuestas, participantes y mensajes.
+
+La autorización de las operaciones sensibles se controla también desde el backend.
 
 ---
 
-## Tecnologías utilizadas
+## Tecnologías
 
 ### Frontend
 
@@ -133,41 +137,41 @@ Dispone de funcionalidades adicionales para gestionar contenidos, propuestas, pa
 - TypeScript
 - HTML5
 - CSS3
-- Angular Router
 - RxJS
-- Responsive Design
+- Angular Router
+- HttpClient
 
 ### Backend
 
 - Java 21
 - Spring Boot
-- Spring Web
 - Spring Security
 - Spring Data JPA
+- Hibernate
 - JWT
-- BCrypt
+- Maven
 - WebSocket
 - Spring Mail
 
 ### Base de datos
 
 - MariaDB 11
+- Docker
 
 ### Herramientas
 
-- Docker
-- Docker Compose
-- Maven
-- npm
 - Git
 - GitHub
+- GitHub Actions
+- GitHub Pages
+- Docker Desktop
 - Visual Studio Code
 
 ---
 
-## Arquitectura del proyecto
+## Arquitectura
 
-El proyecto está dividido en dos aplicaciones principales:
+El proyecto se divide principalmente en frontend y backend:
 
 ```text
 pe-gestion-ong-tfg/
@@ -177,337 +181,226 @@ pe-gestion-ong-tfg/
 │   ├── src/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
-│   ├── pom.xml
-│   └── mvnw
+│   └── pom.xml
 │
 ├── frontend/
 │   ├── public/
 │   ├── src/
 │   ├── angular.json
-│   ├── package.json
-│   └── package-lock.json
+│   └── package.json
 │
 ├── screenshots/
+│
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml
 │
 ├── .env.example
 ├── .gitignore
 └── README.md
 ```
 
-### Frontend
+En entorno local, la comunicación sigue este esquema:
 
-Angular se encarga de:
-
-- interfaz de usuario;
-- navegación;
-- formularios;
-- gestión de sesión en cliente;
-- consumo de la API REST;
-- representación de actividades, noticias y mensajes.
-
-### Backend
-
-Spring Boot se encarga de:
-
-- autenticación;
-- autorización;
-- generación y validación de JWT;
-- gestión de usuarios;
-- gestión de actividades;
-- inscripciones;
-- noticias;
-- mensajes;
-- acceso a MariaDB.
+```text
+Angular
+localhost:4200
+      │
+      ▼
+Spring Boot
+localhost:8082
+      │
+      ▼
+MariaDB
+localhost:3306
+```
 
 ---
 
-# Capturas de pantalla
+## Capturas de la aplicación
 
-Las imágenes siguientes se muestran como miniaturas.  
-Haz clic sobre cualquiera de ellas para verla a tamaño completo.
+Las imágenes se muestran como **miniaturas clicables**.  
+Pulsa sobre cualquiera de ellas para verla a tamaño completo.
 
----
-
-## Página de inicio
-
-La página principal presenta la identidad de **Sumando Capacidades**, su propósito y las diferentes formas de participación.
+### Inicio
 
 <p align="center">
-  <a href="screenshots/01-home.png">
-    <img src="screenshots/01-home.png" alt="Página de inicio - Sumando Capacidades" width="31%">
-  </a>
-  <a href="screenshots/02-home.png">
-    <img src="screenshots/02-home.png" alt="Página de inicio - Misión" width="31%">
-  </a>
-  <a href="screenshots/03-home-formas-sumar.png">
-    <img src="screenshots/03-home-formas-sumar.png" alt="Página de inicio - Formas de sumar" width="31%">
-  </a>
+  <a href="screenshots/01-home.png"><img src="screenshots/01-home.png" width="19%"></a>
+  <a href="screenshots/02-home.png"><img src="screenshots/02-home.png" width="19%"></a>
+  <a href="screenshots/03-home.png"><img src="screenshots/03-home.png" width="19%"></a>
+  <a href="screenshots/04-home.png"><img src="screenshots/04-home.png" width="19%"></a>
+  <a href="screenshots/05-home.png"><img src="screenshots/05-home.png" width="19%"></a>
 </p>
 
----
-
-## Voluntariado
-
-La sección de voluntariado permite consultar las actividades disponibles, sus características y las plazas correspondientes.
+### Voluntariado y actividades
 
 <p align="center">
-  <a href="screenshots/04-voluntariado-mobile-1.png">
-    <img src="screenshots/04-voluntariado-mobile-1.png" alt="Voluntariado - Vista 1" width="31%">
-  </a>
-  <a href="screenshots/05-voluntariado-mobile-2.png">
-    <img src="screenshots/05-voluntariado-mobile-2.png" alt="Voluntariado - Vista 2" width="31%">
-  </a>
-  <a href="screenshots/06-voluntariado-mobile-3.png">
-    <img src="screenshots/06-voluntariado-mobile-3.png" alt="Voluntariado - Vista 3" width="31%">
-  </a>
+  <a href="screenshots/06-voluntariado.png"><img src="screenshots/06-voluntariado.png" width="23%"></a>
+  <a href="screenshots/07-voluntariado.png"><img src="screenshots/07-voluntariado.png" width="23%"></a>
+  <a href="screenshots/08-voluntariado.png"><img src="screenshots/08-voluntariado.png" width="23%"></a>
+  <a href="screenshots/09-voluntariado.png"><img src="screenshots/09-voluntariado.png" width="23%"></a>
 </p>
 
----
-
-## Inicio de sesión
-
-Los usuarios registrados pueden acceder a su área personal mediante correo electrónico y contraseña.
-
 <p align="center">
-  <a href="screenshots/07-login-desktop.png">
-    <img src="screenshots/07-login-desktop.png" alt="Inicio de sesión" width="55%">
-  </a>
+  <a href="screenshots/10-voluntariado.png"><img src="screenshots/10-voluntariado.png" width="23%"></a>
+  <a href="screenshots/11-voluntariado.png"><img src="screenshots/11-voluntariado.png" width="23%"></a>
+  <a href="screenshots/12-voluntariado.png"><img src="screenshots/12-voluntariado.png" width="23%"></a>
+  <a href="screenshots/13-voluntariado.png"><img src="screenshots/13-voluntariado.png" width="23%"></a>
 </p>
 
----
-
-## Área personal
-
-### Mis actividades
-
-El usuario puede consultar las actividades en las que está inscrito y gestionar su participación.
-
 <p align="center">
-  <a href="screenshots/08-mis-actividades.png">
-    <img src="screenshots/08-mis-actividades.png" alt="Área de usuario - Mis actividades" width="55%">
-  </a>
+  <a href="screenshots/18-voluntariado.png"><img src="screenshots/18-voluntariado.png" width="23%"></a>
+  <a href="screenshots/19-voluntariado.png"><img src="screenshots/19-voluntariado.png" width="23%"></a>
+  <a href="screenshots/20-voluntariado.png"><img src="screenshots/20-voluntariado.png" width="23%"></a>
+  <a href="screenshots/21-voluntariado.png"><img src="screenshots/21-voluntariado.png" width="23%"></a>
 </p>
 
-### Mis mensajes
-
-Los usuarios pueden consultar las consultas enviadas y las respuestas recibidas desde la organización.
-
 <p align="center">
-  <a href="screenshots/09-mis-mensajes.png">
-    <img src="screenshots/09-mis-mensajes.png" alt="Área de usuario - Mis mensajes" width="55%">
-  </a>
+  <a href="screenshots/22-voluntariado.png"><img src="screenshots/22-voluntariado.png" width="23%"></a>
+  <a href="screenshots/23-voluntariado.png"><img src="screenshots/23-voluntariado.png" width="23%"></a>
+  <a href="screenshots/24-voluntariado.png"><img src="screenshots/24-voluntariado.png" width="23%"></a>
+  <a href="screenshots/25-voluntariado.png"><img src="screenshots/25-voluntariado.png" width="23%"></a>
 </p>
 
----
-
-## Administración
-
-El menú de administración se muestra únicamente a usuarios con rol `admin`.
-
-### Gestión de propuestas
-
-Permite revisar actividades propuestas antes de incorporarlas a la programación.
+### Directrices
 
 <p align="center">
-  <a href="screenshots/10-gestion-propuestas.png">
-    <img src="screenshots/10-gestion-propuestas.png" alt="Administración - Gestión de propuestas" width="60%">
-  </a>
+  <a href="screenshots/14-directrices.png"><img src="screenshots/14-directrices.png" width="23%"></a>
+  <a href="screenshots/15-directrices.png"><img src="screenshots/15-directrices.png" width="23%"></a>
+  <a href="screenshots/16-directrices.png"><img src="screenshots/16-directrices.png" width="23%"></a>
+  <a href="screenshots/17-directrices.png"><img src="screenshots/17-directrices.png" width="23%"></a>
 </p>
 
-### Control de participantes
-
-Permite consultar qué usuarios están inscritos en cada actividad.
-
 <p align="center">
-  <a href="screenshots/11-control-participantes.png">
-    <img src="screenshots/11-control-participantes.png" alt="Administración - Control de participantes" width="60%">
-  </a>
+  <a href="screenshots/26-directrices.png"><img src="screenshots/26-directrices.png" width="23%"></a>
+  <a href="screenshots/27-directrices.png"><img src="screenshots/27-directrices.png" width="23%"></a>
+  <a href="screenshots/28-directrices.png"><img src="screenshots/28-directrices.png" width="23%"></a>
+  <a href="screenshots/29-directrices.png"><img src="screenshots/29-directrices.png" width="23%"></a>
 </p>
 
-### Bandeja de mensajes
-
-Permite consultar y responder los mensajes enviados mediante el formulario de contacto.
+### Noticias
 
 <p align="center">
-  <a href="screenshots/12-bandeja-mensajes.png">
-    <img src="screenshots/12-bandeja-mensajes.png" alt="Administración - Bandeja de mensajes" width="60%">
-  </a>
+  <a href="screenshots/30-noticias.png"><img src="screenshots/30-noticias.png" width="23%"></a>
+  <a href="screenshots/31-noticias.png"><img src="screenshots/31-noticias.png" width="23%"></a>
+  <a href="screenshots/32-noticias.png"><img src="screenshots/32-noticias.png" width="23%"></a>
+  <a href="screenshots/33-noticias.png"><img src="screenshots/33-noticias.png" width="23%"></a>
+</p>
+
+### Registro de voluntariado
+
+<p align="center">
+  <a href="screenshots/34-formulario.png"><img src="screenshots/34-formulario.png" width="23%"></a>
+  <a href="screenshots/35-formulario.png"><img src="screenshots/35-formulario.png" width="23%"></a>
+  <a href="screenshots/36-formulario.png"><img src="screenshots/36-formulario.png" width="23%"></a>
+  <a href="screenshots/37-formulario.png"><img src="screenshots/37-formulario.png" width="23%"></a>
+</p>
+
+### Inicio de sesión
+
+<p align="center">
+  <a href="screenshots/38-login.png"><img src="screenshots/38-login.png" width="47%"></a>
+  <a href="screenshots/39-login.png"><img src="screenshots/39-login.png" width="47%"></a>
+</p>
+
+### Área de voluntariado
+
+<p align="center">
+  <a href="screenshots/40-sesion-voluntario.png"><img src="screenshots/40-sesion-voluntario.png" width="47%"></a>
+  <a href="screenshots/41-sesion-voluntario.png"><img src="screenshots/41-sesion-voluntario.png" width="47%"></a>
+</p>
+
+### Panel de administración
+
+<p align="center">
+  <a href="screenshots/42-panel-administrador.png"><img src="screenshots/42-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/43-panel-administrador.png"><img src="screenshots/43-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/44-panel-administrador.png"><img src="screenshots/44-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/45-panel-administrador.png"><img src="screenshots/45-panel-administrador.png" width="23%"></a>
+</p>
+
+<p align="center">
+  <a href="screenshots/46-panel-administrador.png"><img src="screenshots/46-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/47-panel-administrador.png"><img src="screenshots/47-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/48-panel-administrador.png"><img src="screenshots/48-panel-administrador.png" width="23%"></a>
+  <a href="screenshots/49-panel-administrador.png"><img src="screenshots/49-panel-administrador.png" width="23%"></a>
+</p>
+
+### Contacto
+
+<p align="center">
+  <a href="screenshots/50-contacto.png"><img src="screenshots/50-contacto.png" width="31%"></a>
+  <a href="screenshots/51-contacto.png"><img src="screenshots/51-contacto.png" width="31%"></a>
+  <a href="screenshots/52-contacto.png"><img src="screenshots/52-contacto.png" width="31%"></a>
 </p>
 
 ---
 
-## Noticias
+## Instalación y ejecución
 
-La aplicación incluye una sección de noticias. Los administradores pueden gestionar su contenido.
+### Requisitos
 
-<p align="center">
-  <a href="screenshots/13-noticias1.png">
-    <img src="screenshots/13-noticias1.png" alt="Noticias - Vista 1" width="47%">
-  </a>
-  <a href="screenshots/14-noticias2.png">
-    <img src="screenshots/14-noticias2.png" alt="Noticias - Vista 2" width="47%">
-  </a>
-</p>
-
----
-
-## Contacto
-
-El formulario de contacto permite enviar consultas que posteriormente pueden ser gestionadas desde el área de administración.
-
-<p align="center">
-  <a href="screenshots/15-contacto.png">
-    <img src="screenshots/15-contacto.png" alt="Formulario de contacto" width="60%">
-  </a>
-</p>
-
----
-
-# Instalación y ejecución
-
-## Requisitos previos
-
-Para ejecutar el proyecto es necesario disponer de:
+Para ejecutar el proyecto localmente es necesario disponer de:
 
 - Java 21
-- Node.js
-- npm
+- Node.js y npm
 - Docker Desktop
 - Git
 
----
-
-## 1. Clonar el repositorio
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/gmp395/pe-gestion-ong-tfg.git
-```
-
-Acceder al proyecto:
-
-```bash
 cd pe-gestion-ong-tfg
 ```
 
----
-
-## 2. Base de datos
+### 2. Base de datos
 
 La base de datos MariaDB se ejecuta mediante Docker.
 
-Accede al backend:
+Desde la carpeta `backend`:
 
 ```bash
 cd backend
-```
-
-Inicia MariaDB:
-
-```bash
 docker compose up -d
 ```
 
-Puedes comprobar que el contenedor está funcionando con:
+Comprobar que está funcionando:
 
 ```bash
 docker ps
 ```
 
-Debería aparecer:
+El contenedor de MariaDB debe aparecer como `healthy`.
+
+La base de datos utiliza:
 
 ```text
-gestion_voluntarios_ong
+Puerto: 3306
+Base de datos: proyecto
 ```
 
-escuchando en el puerto:
+### 3. Backend
 
-```text
-3306
-```
-
----
-
-## 3. Configuración del backend
-
-El proyecto utiliza variables para evitar almacenar credenciales sensibles en el repositorio.
-
-Existe un archivo de ejemplo:
-
-```text
-.env.example
-```
-
-Para desarrollo local puede utilizarse un archivo:
-
-```text
-backend/src/main/resources/application-local.properties
-```
-
-Este archivo está incluido en `.gitignore` y **no debe subirse al repositorio**.
-
-Ejemplo de configuración:
-
-```properties
-spring.datasource.username=dev
-spring.datasource.password=dev
-
-jwt.secret=TU_SECRETO_JWT_LOCAL
-
-spring.mail.username=TU_USUARIO_MAIL
-spring.mail.password=TU_PASSWORD_MAIL
-
-server.port=8082
-```
-
----
-
-## 4. Ejecutar el backend
-
-Desde:
-
-```bash
-cd backend
-```
-
-ejecuta:
+Desde `backend`:
 
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
 ```
 
-En Windows también puede utilizarse:
-
-```bash
-mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=local
-```
-
-El backend estará disponible en:
+El backend se ejecutará en:
 
 ```text
 http://localhost:8082
 ```
 
----
+### 4. Frontend
 
-## 5. Ejecutar el frontend
-
-Abre una segunda terminal.
-
-Accede a:
+En otra terminal:
 
 ```bash
 cd frontend
-```
-
-Instala las dependencias si es la primera ejecución:
-
-```bash
 npm install
-```
-
-Inicia Angular:
-
-```bash
 npm start
 ```
 
@@ -519,160 +412,238 @@ http://localhost:4200
 
 ---
 
-# Credenciales de demostración
+## Credenciales de prueba
 
-Para probar las funcionalidades de administración se incluye una cuenta de demostración:
+Estas credenciales están destinadas exclusivamente al entorno local de demostración.
+
+### Usuario voluntario
+
+```text
+Email: test@test.com
+Contraseña: test123
+```
+
+### Administrador
 
 ```text
 Email: admin@admin.com
 Contraseña: admin123
 ```
 
-La contraseña se almacena en la base de datos mediante BCrypt.
-
-> Estas credenciales pertenecen exclusivamente al entorno de demostración del proyecto y no deben reutilizarse en un entorno real.
-
-Los usuarios voluntarios pueden crearse desde el formulario de registro de la propia aplicación.
+> Estas credenciales no permiten iniciar sesión desde GitHub Pages porque el backend no está desplegado públicamente.
 
 ---
 
-# Configuración local
-
-La configuración principal del backend se encuentra en:
-
-```text
-backend/src/main/resources/application.properties
-```
-
-Las credenciales y configuraciones específicas de cada máquina deben mantenerse fuera del repositorio.
-
-El archivo:
-
-```text
-application-local.properties
-```
-
-está ignorado mediante `.gitignore`.
-
-También se ignoran:
-
-```text
-.env
-node_modules/
-target/
-dist/
-.angular/
-.vscode/
-*.log
-```
-
----
-
-# Base de datos
+## Base de datos
 
 La aplicación utiliza **MariaDB 11**.
 
-El script de inicialización se encuentra en:
+La estructura contempla, entre otras, entidades relacionadas con:
+
+- Usuarios.
+- Actividades.
+- Inscripciones.
+- Noticias.
+- Directrices.
+- Mensajes de contacto.
+- Mensajes internos.
+- Propuestas.
+- Gestión de participación.
+
+La inicialización de la base de datos se encuentra en:
 
 ```text
 backend/db/001_init.sql
 ```
 
-Entre las principales tablas se encuentran:
+Los datos persistentes de MariaDB se almacenan mediante un volumen Docker.
+
+---
+
+## Configuración local
+
+La configuración general del backend utiliza variables de entorno para evitar almacenar credenciales o secretos dentro del repositorio.
+
+El archivo público de referencia es:
 
 ```text
-users
-activities
-users_activities
-noticias
-guidelines
-contact_messages
-chat_messages
+.env.example
 ```
 
-Las relaciones permiten asociar usuarios con actividades y gestionar la participación de los voluntarios.
+Para el desarrollo local puede utilizarse:
+
+```text
+backend/src/main/resources/application-local.properties
+```
+
+Este archivo está excluido del control de versiones.
+
+Ejemplo:
+
+```properties
+spring.datasource.username=dev
+spring.datasource.password=dev
+
+jwt.secret=TU_SECRETO_JWT_LOCAL
+
+spring.mail.username=TU_USUARIO_MAILTRAP
+spring.mail.password=TU_PASSWORD_MAILTRAP
+
+server.port=8082
+```
+
+Las credenciales reales y los secretos no deben incluirse en GitHub.
 
 ---
 
-# Seguridad
+## Seguridad
 
-La aplicación implementa:
+La aplicación incorpora:
 
-- Spring Security.
 - Autenticación mediante JWT.
-- Contraseñas cifradas mediante BCrypt.
-- Roles `volunteer` y `admin`.
-- Restricción de endpoints según rol.
-- Gestión de sesión mediante token.
-- Variables locales para información sensible.
-- Configuración CORS para la comunicación entre Angular y Spring Boot.
-
-Las credenciales sensibles no deben almacenarse directamente en el repositorio.
-
----
-
-# Responsive Design
-
-La interfaz ha sido diseñada para adaptarse a diferentes tamaños de pantalla.
-
-Se han trabajado específicamente:
-
-- navegación responsive;
-- tarjetas de actividades;
-- formularios;
-- área personal;
-- noticias;
-- panel administrativo;
-- footer;
-- distribución y jerarquía de contenidos.
-
-La adaptación a dispositivos móviles forma parte de los requisitos principales del proyecto.
+- Spring Security.
+- Autorización basada en roles.
+- Contraseñas almacenadas mediante hash BCrypt.
+- Protección de endpoints administrativos.
+- Variables de entorno para información sensible.
+- Exclusión de configuraciones locales mediante `.gitignore`.
+- Claves de almacenamiento local específicas del proyecto para evitar conflictos de sesión con otras aplicaciones.
 
 ---
 
-# Estado del proyecto
+## Diseño responsive
 
-Actualmente se encuentran implementadas y comprobadas las principales funcionalidades:
+La interfaz ha sido desarrollada para adaptarse a diferentes tamaños de pantalla.
 
-- [x] Registro de usuarios
-- [x] Inicio y cierre de sesión
-- [x] Autenticación mediante JWT
-- [x] Roles de usuario
-- [x] Consulta de actividades
-- [x] Inscripción en actividades
-- [x] Cancelación de inscripciones
-- [x] Área personal
-- [x] Gestión de propuestas
-- [x] Control de participantes
-- [x] Gestión de noticias
-- [x] Formulario de contacto
-- [x] Bandeja de mensajes
-- [x] Respuestas a consultas
-- [x] Directrices y recursos
-- [x] Diseño responsive
-- [x] Persistencia con MariaDB
-- [x] Configuración mediante Docker
-- [x] Compilación frontend y backend verificada
+Se han trabajado especialmente:
 
-### Funcionalidades sujetas a configuración externa
+- Navegación.
+- Formularios.
+- Tarjetas de actividades.
+- Secciones informativas.
+- Área de usuario.
+- Panel administrativo.
+- Noticias.
+- Página de contacto.
 
-El sistema de recuperación de contraseña utiliza correo electrónico y requiere configurar las credenciales correspondientes del servicio SMTP utilizado en cada entorno.
+Aunque las capturas incluidas en este README se centran principalmente en la versión de escritorio para mostrar con mayor claridad la información y las funcionalidades, la aplicación cuenta con adaptación responsive.
 
 ---
 
-# Autoría
+## Revisión y actualización del proyecto
 
-Proyecto desarrollado originalmente como **Trabajo de Fin de Grado del Ciclo Formativo de Grado Superior en Desarrollo de Aplicaciones Web (DAW)**.
+Este repositorio corresponde a una **versión revisada del proyecto académico original**.
+
+La base funcional del proyecto fue desarrollada conjuntamente como TFG. Posteriormente se realizó una revisión destinada a mejorar su mantenimiento, presentación y adecuación como proyecto de portfolio.
+
+Entre los trabajos realizados durante esta actualización se incluyen:
+
+- Reorganización y limpieza del repositorio.
+- Revisión de la estructura general del proyecto.
+- Renovación de la identidad visual y conceptual bajo el nombre **Sumando Capacidades**.
+- Adaptación de textos y contenidos a la nueva identidad.
+- Revisión de actividades, noticias, directrices y datos de demostración.
+- Incorporación de nuevas imágenes y contenido visual.
+- Actualización del entorno para trabajar con **Java 21**.
+- Actualización de la base de datos a **MariaDB 11**.
+- Revisión del archivo `pom.xml`.
+- Revisión de la configuración de Spring Boot.
+- Simplificación de la configuración Docker.
+- Separación de credenciales y secretos mediante variables de entorno.
+- Creación de una configuración local excluida del repositorio.
+- Revisión del sistema de autenticación.
+- Corrección del almacenamiento de sesión del frontend.
+- Revisión de rutas y recursos estáticos.
+- Adaptación de las rutas de assets para GitHub Pages.
+- Revisión de la compilación Angular.
+- Actualización de la documentación.
+- Incorporación de nuevas capturas de funcionamiento.
+- Configuración de **GitHub Actions**.
+- Publicación del frontend mediante **GitHub Pages**.
+- Revisión general del proyecto para su presentación como portfolio.
+
+El objetivo de esta revisión ha sido conservar la base y la autoría compartida del TFG original, diferenciando al mismo tiempo el trabajo de actualización realizado posteriormente.
+
+---
+
+## GitHub Pages
+
+El frontend se despliega automáticamente mediante **GitHub Actions**.
+
+El workflow se encuentra en:
+
+```text
+.github/workflows/deploy-pages.yml
+```
+
+Cada actualización de la rama `main` genera una nueva compilación y despliegue.
+
+Demo:
+
+[https://gmp395.github.io/pe-gestion-ong-tfg/](https://gmp395.github.io/pe-gestion-ong-tfg/)
+
+### Limitación de la demo
+
+GitHub Pages aloja exclusivamente contenido estático.
+
+Por este motivo, las funcionalidades que requieren:
+
+- autenticación;
+- consultas a MariaDB;
+- gestión de actividades;
+- inscripciones;
+- mensajes;
+- administración;
+
+requieren ejecutar el backend Spring Boot y la base de datos en entorno local.
+
+---
+
+## Estado del proyecto
+
+El proyecto incluye actualmente:
+
+- [x] Frontend Angular.
+- [x] Backend Spring Boot.
+- [x] Base de datos MariaDB.
+- [x] Docker para la base de datos.
+- [x] Registro de usuarios.
+- [x] Inicio de sesión.
+- [x] Autenticación JWT.
+- [x] Roles de voluntario y administrador.
+- [x] Gestión de actividades.
+- [x] Inscripciones.
+- [x] Gestión de propuestas.
+- [x] Gestión de participantes.
+- [x] Sistema de mensajes.
+- [x] Noticias.
+- [x] Directrices.
+- [x] Formulario de contacto.
+- [x] Diseño responsive.
+- [x] GitHub Pages para demostración visual.
+- [x] GitHub Actions para despliegue automático.
+- [x] Revisión y actualización posterior para portfolio.
+
+---
+
+## Autores
+
+### Proyecto académico original
+
+Desarrollado conjuntamente como Trabajo de Fin de Grado del Ciclo Formativo de Grado Superior en **Desarrollo de Aplicaciones Web (DAW)** por:
 
 **Vicente Arnal González**
 
 **Gema Miguel**  
 [GitHub](https://github.com/gmp395)
 
+### Revisión posterior del proyecto
+
+Revisión, reorganización, actualización técnica, nueva identidad, documentación y preparación para portfolio realizadas posteriormente por:
+
+**Gema Miguel**  
+[GitHub](https://github.com/gmp395)
+
 ---
 
-## Nota
-
-**Sumando Capacidades** es una organización ficticia creada exclusivamente para este proyecto académico.
-
-Los nombres, contenidos, actividades y datos mostrados en la aplicación tienen finalidad demostrativa y no representan a una entidad real.
+> **Nota:** Sumando Capacidades es una organización ficticia creada con fines académicos para el desarrollo y presentación de este proyecto.
