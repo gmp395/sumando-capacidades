@@ -12,8 +12,8 @@ Posteriormente, el proyecto ha sido **revisado, reorganizado y actualizado por G
 
 ## Enlaces
 
-- **Repositorio:** [GitHub](https://github.com/gmp395/pe-gestion-ong-tfg)
-- **Demo visual:** [GitHub Pages](https://gmp395.github.io/pe-gestion-ong-tfg/)
+- **Repositorio:** [GitHub](https://github.com/gmp395/sumando-capacidades)
+- **Demo visual:** [GitHub Pages](https://gmp395.github.io/sumando-capacidades/)
 
 > La versión publicada en GitHub Pages permite consultar la interfaz de la aplicación.  
 > Las funcionalidades que requieren autenticación, acceso a la base de datos o comunicación con el backend deben ejecutarse en entorno local.
@@ -174,7 +174,7 @@ La autorización de las operaciones sensibles se controla también desde el back
 El proyecto se divide principalmente en frontend y backend:
 
 ```text
-pe-gestion-ong-tfg/
+sumando-capacidades/
 │
 ├── backend/
 │   ├── db/
@@ -350,8 +350,8 @@ Para ejecutar el proyecto localmente es necesario disponer de:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/gmp395/pe-gestion-ong-tfg.git
-cd pe-gestion-ong-tfg
+git clone https://github.com/gmp395/sumando-capacidades.git
+cd sumando-capacidades
 ```
 
 ### 2. Base de datos
@@ -580,7 +580,7 @@ Cada actualización de la rama `main` genera una nueva compilación y despliegue
 
 Demo:
 
-[https://gmp395.github.io/pe-gestion-ong-tfg/](https://gmp395.github.io/pe-gestion-ong-tfg/)
+[https://gmp395.github.io/sumando-capacidades/](https://gmp395.github.io/sumando-capacidades/)
 
 ### Limitación de la demo
 
